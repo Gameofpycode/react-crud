@@ -11,7 +11,7 @@ function Login(){
             </div>
 
             <div className="row mt-3">
-                <div className="col-lg-6 offset-md-3 col-lg-8 offset-md-2 col-sm-12">
+                <div className="col-lg-6 offset-md-3 col-lg-6 offset-md-2 col-sm-12">
                     <div className="card">
                         <div className="card-body">
                             <form autocomplet="off">
@@ -29,7 +29,7 @@ function Login(){
                                 </div>
 
                                 <div className="form-group mt-2">
-                                    <input type="submit" value="Register" className="btn btn-outline-success"/>
+                                    <input type="submit" value="Login" className="btn btn-outline-success"/>
                                     <div className="float-end d-flex align-items-center">
                                         <strong className="text-success">are you new user?</strong>
                                         <Link to={'/register'} className="btn btn-link">Register</Link>
