@@ -2,7 +2,7 @@ import React from 'react'
 import { Navigate, Outlet } from 'react-router-dom'
 
 function ProtectedRoute(props) {
-    let LoginStatus = false
+    let LoginStatus = localStorage.getItem("loginStatus") || false
   return (
    <React.Fragment>
        {

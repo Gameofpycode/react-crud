@@ -1,5 +1,7 @@
 import React,{useState} from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import { registerUser } from "../data/user";
 
 
 function Register(){
@@ -27,13 +29,22 @@ function Register(){
             validateName(value)
         }else if(name === 'email'){
             validateEmail(value)
+        }else if(name==="mobile"){
+            validateMobile(value)
+        }else if(name === "password"){
+            validatePass(value)
         }
         setUser({...user,[name]:value })
     }
 
     const submitHandler = async(e) =>{
         e.preventDefault();
-        console.log("data=", user)
+        if(err){
+            toast.error("check the errors")
+        }else{
+            console.log('data=',user)
+            registerUser(user)
+        }
     }
 
     //validation 
@@ -51,6 +62,9 @@ function Register(){
             if(regx.test(name)===false){
                 setError(true)
                 setErrMsg({...errmsg, ['name']:"invalid name formate"})
+            } else {
+                setError(false)
+                setErrMsg({...errmsg, ['name']: ""})
             }
            
         }
@@ -69,14 +83,51 @@ function Register(){
                 setError(true)
                 setErrMsg({...errmsg, ['email']:"invalid email formate"})
             }
-        else{
-            setError(true)
+            else{
+            setError(false)
             setErrMsg({...errmsg, ['email']:""})
 
-        }
+            }
            
         }
     }
+
+    //validatioj for mobile 
+
+    const validateMobile = (mobile)=>{
+        if(mobile === ""){
+            setError(true)
+            setErrMsg({...errmsg, ['mobile']:" mobile field should not be empty"})
+        }else{
+            let regx = /^[6-9]\d{9}$/;
+            if(regx.test(mobile)===false){
+                setError(true)
+                setErrMsg({...errmsg, ['mobile']:"invalid mobile number formate"})
+
+        }else{
+            setError(false)
+            setErrMsg({...errmsg, ['mobile']:""})
+        }
+    }
+}
+
+       //validate passwords
+       const validatePass = (password)=>{
+        if(password === ""){
+            setError(true)
+            setErrMsg({...errmsg, ['password']:" mobile field should not be empty"})
+        }else{
+            let regx = /^[a-zA-Z0-9\s]+$/;
+            if(regx.test(password)===false){
+                setError(true)
+                setErrMsg({...errmsg, ['password']:"invalid passowrd formate"})
+
+        }else{
+            setError(false)
+            setErrMsg({...errmsg, ['password']:""})
+        }
+    }
+} 
 
     return(
         <div className="container-fluid">
@@ -126,7 +177,7 @@ function Register(){
 
                                 <div className="form-group mt-2">
                                     <label htmlFor="password">password</label>
-                                    <input type="password" name="password" id="pass" value={user.password}  onChange={readValue}  className="form-control" required />
+                                    <input type="password" name="password" id="password" value={user.password}  onChange={readValue}  className="form-control" required />
                                     <div>
                                         {
                                             err && errmsg.password?<strong className="text-danger">{errmsg.password}</strong>:
