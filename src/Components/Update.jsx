@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
-import { addBook } from '../data/book'
 
-function Create() {
+
+function Update() {
 
     const [book,setBook]= useState({
         title:"",
@@ -16,30 +16,21 @@ function Create() {
         setBook({...book,[name]:value})
     }
 
-    const getRandom = (e)=>{
-        return Math.floor(Math.random()*10000)
-    }
-
     const submitHandler = async (e)=>{
         e.preventDefault();
-        let data = {
-            id:getRandom(),
-            ...book
-        };
-        console.log('book =',data)
-        addBook(data)
+        console.log('book =',book)
     }
    
   return (
     <div className="container">
         <div className="row">
             <div className="col-md-12 text-center">
-                <h3 className="display-3 text-succes">Create New</h3>
+                <h3 className="display-3 text-succes">Update New</h3>
             </div>
         </div>
 
         <div className="row">
-            <div className="col-md-12 ">
+            <div className="col-md-12 text-center">
                 <div className="card">
                     <div className="card-body">
                         <form autoComplete='off' onSubmit={submitHandler}>
@@ -60,11 +51,11 @@ function Create() {
 
                             <div className="form-group mt-2">
                                 <label htmlFor="price">Price</label>
-                                <input type="number" name="price" id="price" value={book.price} onChange={readValue} className="form-control" required/>
+                                <textarea type="number" name="price" id="price" value={book.description} onChange={readValue} className="form-control" required/>
                             </div>
                             <div>
                                 <div className="form-group mt-2">
-                                    <input type="submit" value="Create" className="btn btn-outline-success" />
+                                    <input type="submit" value="Update" className="btn btn-outline-success" />
                                 </div>
                             </div>
                         </form>
@@ -78,4 +69,4 @@ function Create() {
   )
 }
 
-export default Create
+export default Update
