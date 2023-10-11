@@ -2,6 +2,7 @@
 import { toast } from 'react-toastify';
 
 let books = JSON.parse(localStorage.getItem("books")) || [];
+let loginUser = JSON.parse(localStorage.getItem("loginUser"));
 
 
 const addBook = async (book) => {
@@ -10,18 +11,30 @@ const addBook = async (book) => {
     if(extTitle){
         toast.success(`Book title ${book.title} already exist.`)
     }else{
-        books.push(book);
-        save();
-        toast.success("New book added succesfully");
-        setInterval(()=>{
-            window.location.href = "/"
-        },3000);
+       if(loginUser){
+           let data = {
+               email:loginUser,
+               ...book
+           };
+            books.push(data);
+                save();
+                toast.success("New book added succesfully");
+                setInterval(()=>{
+                    window.location.href = "/"
+                },3000);
+       }
     }
 }
 
 
 const readBook = ()=>{
-    return books;
+    let filtBooks = books.filter(item => item.email === loginUser)
+    if(filtBooks){
+        return filtBooks;
+    }else{
+        return [];
+    }
+    
 
 }
 const readSignal = async (id) => {

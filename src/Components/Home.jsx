@@ -2,13 +2,13 @@ import React,{useState,useEffect} from "react";
 import { Link } from 'react-router-dom';
 import { readBook } from "../data/book";
 
-function Home(props){
+function Home(){
     const [books,setBooks]= useState([])
 
     useEffect(()=>{
         let data = readBook()
         setBooks(data)
-    })
+    },[])
     return(
         <div className="container">
             <div className="row">
@@ -36,7 +36,10 @@ function Home(props){
                         </tr>
                     </thead>
                     <tbody>
-                        {
+                       {
+                           books.length > 0?(
+                               <React.Fragment>
+                                {
                             books && books.map((item,index)=>{
                                 return(
                                     <tr className="text-center" key={index}>
@@ -54,6 +57,14 @@ function Home(props){
                                 )
                             })
                         }
+                               </React.Fragment>
+                           ):(
+                               <tr>
+                               <td colSpan = {5}><strong className = "text-seccondary">no books are avialable</strong>
+                                </td>
+                               </tr>
+                           )
+                       }
                     </tbody>
                    </table>
 
