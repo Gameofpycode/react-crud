@@ -1,6 +1,8 @@
 import React,{useState,useEffect} from "react";
 import { Link } from 'react-router-dom';
-import { readBook } from "../data/book";
+import { readBook, deleteBook } from "../data/book";
+
+import { toast } from 'react-toastify';
 
 function Home(){
     const [books,setBooks]= useState([])
@@ -9,6 +11,13 @@ function Home(){
         let data = readBook()
         setBooks(data)
     },[])
+    const deleteHandler=(id)=>{
+        if(window.confirm(`are you sure want to delet book data = ${id}?`)){
+            deleteBook(id)
+        }else{
+            toast.warning("delete teminated")
+        }
+    }
     return(
         <div className="container">
             <div className="row">
@@ -51,7 +60,7 @@ function Home(){
                                         <td>&#8377;{item.price}</td>
                                         <td className="d-flex justify-content-evenly">
                                             <Link to={`/update/${item.id}`} className="btn btn-info"><i className="bi bi-pencil"></i></Link>
-                                            <button className="btn btn-danger"><i className="bi bi-trash"></i></button>
+                                            <button onClick={()=>deleteHandler(item.id)} className="btn btn-danger"><i className="bi bi-trash"></i></button>
                                         </td>
                                     </tr>
                                 )

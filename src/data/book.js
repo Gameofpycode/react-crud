@@ -7,7 +7,9 @@ let loginUser = JSON.parse(localStorage.getItem("loginUser"));
 
 const addBook = async (book) => {
 
-    let extTitle = books.find((item)=> item.title === book.title)
+    let filteredBook = books.filter(item => item.email === loginUser)
+
+    let extTitle = filteredBook.find((item)=> item.title === book.title)
     if(extTitle){
         toast.success(`Book title ${book.title} already exist.`)
     }else{
@@ -50,9 +52,48 @@ const readSingle = (id) => {
     }
 }
 
-const updateBook = async (book,id) => {}
+const updateBook =(book) => {
+    if(book.email !== loginUser){
+        toast.warning("unUthorized,acces denied..")
+    }else{
+        let extBookIndex = books.findIndex(item => item.id === book.id);
+        if(!extBookIndex){
+            toast.warning("requested bood id not found");
+        }else{
+            books.splice(extBookIndex,1,book);
+            save();
+            toast.success("book detailes updated succesfully");
+            setInterval(()=>{
+                window.location.href="/";
+            },3000);
+        }
+    }
+}
 
-const deleteBook = async (id) => {}
+const deleteBook = (id) => {
+
+    let extBookIndex = books.findIndex(item => item.id === id);//index position
+    let extBook = books.find(item => item.id === id)//book data
+
+
+    if(extBook.email !== loginUser){
+        toast.warning("un authorized acces denied");
+    }else{
+        if(!extBookIndex){
+            toast.warning("requested bod id not found")
+        }else{
+            books.splice(extBookIndex,1);
+            save()
+            toast.success("book data sucesfully deleted");
+            setInterval(()=>{
+                window.location.href="/";
+            },3000);
+
+        }
+
+    }
+
+}
 
 
 const save = ()=>{

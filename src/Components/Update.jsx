@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from "react-router-dom"
 import { readSingle } from "../data/book";
-import { addBook } from "../data/book";
+import { updateBook } from "../data/book";
 
 function Update() {
    const [book,setBook]= useState({
@@ -37,7 +37,7 @@ function Update() {
         //     ...book
         // };
         console.log('book =',book)
-        addBook(book)
+        updateBook(book)
     }
    
   return (
