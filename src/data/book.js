@@ -37,11 +37,15 @@ const readBook = ()=>{
     
 
 }
-const readSignal = async (id) => {
+const readSingle = (id) => {
     let extdata = books.find((item)=> item.id === id);
     if(!extdata){
         toast.warning(`Requested book id ${id} not matched`)
-    }else{
+    }else if(extdata.email !== loginUser){
+        toast.warning("unAuthorised acces of book")
+
+    }
+    else{
         return extdata
     }
 }
@@ -55,6 +59,6 @@ const save = ()=>{
     localStorage.setItem("books",JSON.stringify(books))
 }
 
-export {addBook,readBook,readSignal,updateBook, deleteBook}
+export {addBook,readBook,readSingle,updateBook, deleteBook}
 
     

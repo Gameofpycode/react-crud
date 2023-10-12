@@ -49,8 +49,8 @@ function Home(){
                                         </td>
                                         <td>{item.description}</td>
                                         <td>&#8377;{item.price}</td>
-                                        <td to={`/update/${item.id}`} className="d-flex justify-content-evenly">
-                                            <Link to={"/update"} className="btn btn-info"><i className="bi bi-pencil"></i></Link>
+                                        <td className="d-flex justify-content-evenly">
+                                            <Link to={`/update/${item.id}`} className="btn btn-info"><i className="bi bi-pencil"></i></Link>
                                             <button className="btn btn-danger"><i className="bi bi-trash"></i></button>
                                         </td>
                                     </tr>

@@ -8,7 +8,8 @@ import Pnf from "./Components/Pnf";
 import ProtectedRoute from "./PrivateRoute/ProtectedRoute";
 import { ToastContainer } from "react-toastify";
 import Create from "./Components/Create";
-import Update from "./Update";
+import Update from "./Components/Update";
+import './App.css'
 
 function App(props){
   return(
@@ -19,7 +20,7 @@ function App(props){
         <Route element={<ProtectedRoute/>}>
           <Route path={`/`} element={<Home/>}/>
           <Route path={`/create`} element={<Create/>}/>
-          <Route path={`/update`} element={<Update/>}/>
+          <Route path={`/update/:bookId`} element={<Update/>}/>
 
         </Route>
         <Route path={`/login`} element={<Login/>}/>

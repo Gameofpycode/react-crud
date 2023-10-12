@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import '../styles/login.css';
 import { loginUser } from "../data/user";
 
 function Login() {
@@ -71,7 +72,7 @@ function Login() {
   };
 
   return (
-    <div className="container">
+    <div className="container-fluid login-bg">
       <div className="row">
         <div className="col-md-12 text-center">
           <h3 className="display-3 text-secondary">Login</h3>

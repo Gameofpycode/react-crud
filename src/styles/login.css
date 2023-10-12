@@ -1,0 +1,23 @@
+*{
+    color:gold;
+    font-weight:600;
+    letter-spacing:2px;
+}
+
+input{
+    background-color:#F6F4EB;
+    /* background-color:yellow; */
+}
+
+.login-bg{
+    height:100vh;
+    width:100vw;
+    background:url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfPonZa5e4b8iAtn7C-L5uKiqTvzH67E7MSY-raUjGmHfy7Ejt430Q6LKBP4VGWWmoYeQ&usqp=CAU");
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-position:center;
+}
+.card{
+    background:linear-gradient(black,#222)
+    
+}
